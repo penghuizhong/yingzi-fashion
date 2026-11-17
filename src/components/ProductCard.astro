@@ -1,0 +1,23 @@
+---
+import { getText, localUrl, productText } from '../lib/i18n.js';
+const { product:p,locale='en' }=Astro.props;
+const t=getText(locale), v=productText(p,locale);
+const href=localUrl(locale,`products/${p.slug}`);
+const search=[p.id,p.id.replaceAll('-',''),p.name,p.nameZh,p.subtitle,p.subtitleZh,p.color,p.colorZh,p.category,p.categoryZh,p.description,p.descriptionZh,p.searchTags||''].join(' ').toLowerCase();
+---
+<article class="product-card" data-code={p.id} data-category={p.key} data-search={search}>
+  <div class="product-media">
+    <a class="product-img" href={href} aria-label={`${t.quick}: ${v.name}`}>
+      <img loading="lazy" decoding="async" src={p.img} alt={locale==='zh'?`${v.name}人台服装款式参考图`:`Mannequin tailoring reference image for ${v.name}`} />
+      {p.badge && <span class="photo-tag">{p.badge==='Bestseller'&&locale==='zh'?'畅销款':p.badge==='Featured'&&locale==='zh'?'精选':p.badge==='New'&&locale==='zh'?'新品':p.badge}</span>}
+    </a>
+    <button type="button" class="quick" data-quick={p.id} aria-label={`${t.quick}: ${v.name}`}><span>{t.quick}</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12h14m-6-6 6 6-6 6" /></svg></button>
+  </div>
+  <div class="product-meta">
+    <div class="product-meta-row"><span class="product-code">{p.id}</span><span class="product-cat">{v.category}</span></div>
+    <h3 class="product-title"><a href={href}>{v.name}</a></h3>
+    <p class="product-sub">{v.subtitle}</p>
+    <p class="product-price">{t.price} <strong>USD ${p.estimatedFromUsd}</strong><span>{t.priceUnit}</span></p>
+    <div class="product-line"><span class="product-custom">{t.custom}</span><a href={href} class="mini-arrow" aria-label={t.discuss}>↗</a></div>
+  </div>
+</article>

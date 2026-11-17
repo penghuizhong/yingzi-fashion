@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { getText, localUrl, productText } from '../lib/i18n.js';
+const { locale='en', product:p }=Astro.props;
+const t=getText(locale),v=productText(p,locale);
+const title=t.productTitle(p),description=t.productDescription(p);
+const path=`products/${p.slug}`;
+---
+<SiteLayout locale={locale} path={path} title={title} description={description} image={p.img}>
+<main class="detail-page">
+  <div class="breadcrumb"><a href={localUrl(locale)}>{t.home}</a> &nbsp; / &nbsp; <a href={`${localUrl(locale)}#collections`}>{t.navCollections}</a> &nbsp; / &nbsp; {v.name}</div>
+  <div class="detail-wrap"><div class="detail-photo"><img src={p.img} alt={locale==='zh'?`${v.name}人台服装款式参考图`:`${v.name} mannequin tailoring reference`}/></div>
+  <div class="detail-copy"><div class="overline">{p.id} &nbsp; / &nbsp; {v.category}</div>
+    <h1>{v.name}</h1><p>{v.description} {t.detailMade}</p><div class="detail-divider"></div>
+    <div class="detail-spec"><span>{t.direction}</span><strong>{v.subtitle}</strong></div>
+    <div class="detail-spec"><span>{t.color}</span><strong>{v.color}</strong></div>
+    <div class="detail-spec"><span>{t.fabric}</span><strong>{t.fabricValue}</strong></div>
+    <div class="detail-spec"><span>{t.customize}</span><strong>MTM / OEM / ODM</strong></div>
+    <div class="detail-spec"><span>{t.quantity}</span><strong>{t.quantityValue}</strong></div>
+    <div class="detail-spec price-spec"><span>{t.priceDetail}</span><strong>USD ${p.estimatedFromUsd} <small>{t.priceUnit}</small></strong></div>
+    <p class="price-disclaimer">{t.priceNote}</p>
+    <p class="demo-note">{t.detailsNote}</p>
+    <a class="btn-dark" href={`${localUrl(locale)}#contact`}>{t.discuss} &nbsp; ↗</a>
+  </div></div>
+</main>
+</SiteLayout>

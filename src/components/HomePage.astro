@@ -1,0 +1,53 @@
+---
+import products from '../data/products.json';
+import ProductCard from './ProductCard.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { getText } from '../lib/i18n.js';
+const { locale='en' } = Astro.props;
+const t=getText(locale);
+---
+<SiteLayout locale={locale} isHome={true} title={t.homeTitle} description={t.homeDescription}>
+<main>
+<section class="hero hero-campaign" aria-label={locale==='zh'?'OIHEY 高级服装定制系列':'OIHEY custom tailoring collection'}>
+  <div class="hero-backdrop"><img src="/images/oihey-hero-campaign.webp" fetchpriority="high" decoding="async" alt={locale==='zh'?'OIHEY 高级时装形象：香槟色礼服女士与深色双排扣西装男士':'OIHEY campaign: woman in an ivory satin gown beside a man in a dark double-breasted suit'} /></div>
+  <div class="hero-shading" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-kicker"><span class="kicker-rule"></span> {t.heroKicker}</div>
+    <span class="hero-eyebrow">{t.heroTag}</span>
+    <h1>{t.heroTitle1}<br/><em>{t.heroTitle2}</em></h1>
+    <p class="hero-lead">{t.heroLead}</p>
+    <div class="hero-btns"><a class="btn-dark hero-primary" href="#collections">{t.heroExplore} <span aria-hidden="true">↗</span></a><a class="btn-link hero-secondary" href="#story">{t.heroCraft} <span aria-hidden="true">↗</span></a></div>
+  </div>
+  <div class="hero-stamp">{t.heroStamp}</div>
+  <a class="hero-scroll" href="#collections" aria-label={t.heroScroll}><span>{t.heroScroll}</span><span class="scroll-line" aria-hidden="true"></span></a>
+</section>
+<div class="marquee"><div><strong>{t.feature1}</strong><span>{t.feature1Sub}</span></div><div><strong>{t.feature2}</strong><span>{t.feature2Sub}</span></div><div><strong>{t.feature3}</strong><span>{t.feature3Sub}</span></div><div><strong>{t.feature4}</strong><span>{t.feature4Sub}</span></div></div>
+<section class="section container" id="collections">
+  <div class="heading-row"><div><span class="overline">{t.collectionsOver}</span><h2>{t.collectionsTitle1}<br/>{t.collectionsTitle2}</h2><p>{t.collectionsLead}</p></div></div>
+  <div class="collection-bar">
+    <div class="tabs" role="group" aria-label={locale==='zh'?'筛选款式':'Filter collection'}>
+      <button type="button" class="tab active" data-filter="all" aria-pressed="true">{t.tabAll}</button><button type="button" class="tab" data-filter="business" aria-pressed="false">{t.tabBusiness}</button><button type="button" class="tab" data-filter="blazers" aria-pressed="false">{t.tabBlazers}</button><button type="button" class="tab" data-filter="formal" aria-pressed="false">{t.tabFormal}</button>
+    </div>
+    <label class="searchbar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="7"/><path d="m16 16 5 5"/></svg><input id="styleSearch" type="search" aria-label={t.search} placeholder={t.search} autocomplete="off"/></label>
+  </div>
+  <div class="resultsline"><span id="resultsCount">{locale==='zh'?`${products.length} 款式`:`${products.length} STYLES`}</span><label>{t.sort} <select class="sort" id="sortSelect" aria-label={t.sort}><option value="default">{t.sortFeature}</option><option value="name">{t.sortName}</option><option value="reverse">{t.sortNew}</option></select></label></div>
+  <div class="product-grid">{products.map(p=><ProductCard product={p} locale={locale}/>)}<div class="no-results" id="noResults"><p>{t.noResults}</p><button type="button" id="clearSearch">{t.clearSearch}</button></div></div>
+  <div class="collection-bottom"><a class="outline-btn" href="#contact">{t.ownDesign} &nbsp; ↗</a></div>
+</section>
+<section class="story" id="story"><div class="story-image"><img loading="lazy" src="https://images.pexels.com/photos/6766284/pexels-photo-6766284.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1200&fit=crop" alt={locale==='zh'?'人台西装工艺与剪裁参考图':'Tailoring studio mannequin and pattern-making reference'} /></div><div class="story-content"><span class="overline">{t.craftOver}</span><h2>{t.craftTitle1}<br/>{t.craftTitle2}</h2><p>{t.craftLead}</p><div class="story-quote">{t.craftQuote}</div><a href="#process" class="btn-link story-cta">{t.craftCTA} ↗</a></div></section>
+<section class="section container process" id="process"><span class="overline">{t.processOver}</span><h2>{t.processTitle1}<br/>{t.processTitle2}</h2><p class="lead">{t.processLead}</p><div class="steps"><div class="step"><span class="step-num">01</span><h3>{t.step1}</h3><p>{t.step1Desc}</p></div><div class="step"><span class="step-num">02</span><h3>{t.step2}</h3><p>{t.step2Desc}</p></div><div class="step"><span class="step-num">03</span><h3>{t.step3}</h3><p>{t.step3Desc}</p></div><div class="step"><span class="step-num">04</span><h3>{t.step4}</h3><p>{t.step4Desc}</p></div></div></section>
+<section class="contact" id="contact"><span class="overline">{t.contactOver}</span><h2>{t.contactTitle}</h2><p>{t.contactLead}</p><button type="button" data-quote>{t.contactCTA} &nbsp; ↗</button></section>
+</main>
+<script type="application/json" id="product-data" set:html={JSON.stringify(products).replaceAll('<','\\u003c')} />
+<div class="overlay" id="productOverlay" aria-hidden="true"><aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+  <button class="close" type="button" id="closeDrawer" aria-label={t.close}>×</button>
+  <span class="overline" id="drawerCode"></span><h2 id="drawerTitle"></h2><p class="drawer-sub" id="drawerDesc"></p>
+  <div class="drawer-photo"><img id="drawerPhoto" alt="" /></div>
+  <div class="detail-list"><div><span>{t.color}</span><strong id="drawerColor"></strong></div><div><span>{t.direction}</span><strong id="drawerType"></strong></div><div><span>{t.fabric}</span><strong>{t.modalFabric}</strong></div><div><span>{t.service}</span><strong>MTM / OEM / ODM</strong></div><div><span>{t.priceDetail}</span><strong id="drawerPrice"></strong></div></div>
+  <p class="price-disclaimer">{t.priceNote}</p><div class="quote-text" id="quoteText"></div>
+  <div class="drawer-bottom"><button type="button" id="copyQuote" class="btn-dark">{t.copy} <span>↗</span></button><button type="button" class="outline-btn" id="drawerCloseSecondary">{t.close}</button></div>
+  <p class="demo-note">{t.modalNote}</p>
+</aside></div>
+<div class="toast" role="status" id="toast"></div>
+<script type="application/json" id="ui-copy" set:html={JSON.stringify({copied:t.copied,selectCopy:t.selectCopy,price:t.price,priceUnit:t.priceUnit})} />
+</SiteLayout>

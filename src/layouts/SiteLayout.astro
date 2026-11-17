@@ -1,0 +1,68 @@
+---
+import { getText, localUrl, absoluteUrl } from '../lib/i18n.js';
+const { locale='en', path='', title, description, image='/images/oihey-hero-campaign.webp', isHome=false, includeApp=true } = Astro.props;
+const t=getText(locale);
+const canonical=absoluteUrl(localUrl(locale,path));
+const altEn=absoluteUrl(localUrl('en',path));
+const altZh=absoluteUrl(localUrl('zh',path));
+const jsonld = isHome ? [
+  { '@context':'https://schema.org','@type':'Organization', name:'OIHEY', url:'https://oihey.cn/', description:'Guangzhou custom tailoring, made-to-measure and OEM/ODM clothing production', address:{'@type':'PostalAddress',addressLocality:'Guangzhou',addressCountry:'CN'} },
+  { '@context':'https://schema.org','@type':'WebSite', name:'OIHEY', url:'https://oihey.cn/', inLanguage:['en','zh-CN'] }
+] : { '@context':'https://schema.org','@type':'WebPage', name:title, url:canonical, description, inLanguage:locale==='zh'?'zh-CN':'en' };
+---
+<!doctype html>
+<html lang={locale==='zh'?'zh-CN':'en'}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang="en" href={altEn} />
+  <link rel="alternate" hreflang="zh-CN" href={altZh} />
+  <link rel="alternate" hreflang="x-default" href={altEn} />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="describedby" href="/llms.txt" type="text/plain" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="OIHEY" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={absoluteUrl(image)} />
+  <meta property="og:locale" content={locale==='zh'?'zh_CN':'en_US'} />
+  <meta name="twitter:card" content="summary_large_image" />
+  {isHome && <link rel="preload" as="image" href="/images/oihey-hero-campaign.webp" type="image/webp" />}
+  <link rel="preconnect" href="https://images.pexels.com" />
+  <link rel="stylesheet" href="/site.css" />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />
+</head>
+<body data-locale={locale}>
+<header class="site-header">
+  <a class="brand" href={localUrl(locale)} aria-label="OIHEY">OIHEY<small>{t.brand}</small></a>
+  <nav id="siteNav" class="nav" aria-label={locale==='zh'?'主导航':'Main navigation'}>
+    <a href={`${localUrl(locale)}#collections`}>{t.navCollections}</a><a href={`${localUrl(locale)}#story`}>{t.navCraft}</a><a href={`${localUrl(locale)}#process`}>{t.navProcess}</a><a href={`${localUrl(locale)}#contact`}>{t.navContact}</a>
+  </nav>
+  <div class="header-actions">
+    <div class="language-switch" role="group" aria-label="Language / 语言">
+      <a href={localUrl('en',path)} class:list={{selected:locale==='en'}} aria-current={locale==='en'?'page':undefined} lang="en">EN</a>
+      <span aria-hidden="true">/</span>
+      <a href={localUrl('zh',path)} class:list={{selected:locale==='zh'}} aria-current={locale==='zh'?'page':undefined} lang="zh-CN">中文</a>
+    </div>
+    <button type="button" class="icon-btn hamburger" id="mobileNavButton" aria-controls="siteNav" aria-expanded="false" aria-label={locale==='zh'?'切换菜单':'Toggle menu'}>☰</button>
+    <a class="header-quote" href={`${localUrl(locale)}#contact`}>{t.navInquiry} &nbsp; ↗</a>
+  </div>
+</header>
+<slot />
+<footer class="footer">
+  <div class="footer-main">
+    <div><div class="footer-brand">OIHEY</div><p>{t.footerIntro}</p></div>
+    <div><h4>{t.footerExplore}</h4><a href={`${localUrl(locale)}#collections`}>{t.navCollections}</a><a href={`${localUrl(locale)}#story`}>{t.footerAbout}</a><a href={`${localUrl(locale)}#process`}>{t.footerProcess}</a></div>
+    <div><h4>{t.footerServices}</h4><a href={`${localUrl(locale)}#contact`}>{t.footerMTM}</a><a href={`${localUrl(locale)}#contact`}>OEM / ODM</a><a href={`${localUrl(locale)}#contact`}>{t.footerSampling}</a></div>
+    <div><h4>{t.navContact}</h4><a href={`${localUrl(locale)}#contact`}>{t.footerRequest}</a><a href={`${localUrl(locale)}#contact`}>{t.footerCity}</a><a href="https://oihey.cn" rel="noopener">oihey.cn</a></div>
+  </div>
+  <div class="footer-bottom"><span>{t.footerCopyright}</span><span>{t.footerDemo}</span></div>
+</footer>
+{includeApp && <script defer src="/site.js"></script>}
+</body>
+</html>
