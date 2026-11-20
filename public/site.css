@@ -197,3 +197,15 @@ body { background:var(--paper);color:var(--ink); }
 .price-disclaimer{font-size:11px!important;line-height:1.7!important;color:#a79487!important;margin:14px 0 16px!important;max-width:680px}
 .detail-copy .demo-note{margin:10px 0 22px}
 @media(max-width:700px){.language-switch a{font-size:11px}.product-price{font-size:10px}.product-price strong{font-size:12px}.price-spec strong{font-size:16px}}
+
+/* Contact email (2026-11-20) */
+.contact-email{font-size:15px!important;letter-spacing:.04em;margin:0 auto 28px!important}
+.contact-email span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#c9a584;margin-right:12px}
+.contact-email a{color:#f4ece4;text-decoration:none;border-bottom:1px solid #c9a584;padding-bottom:2px}
+.contact-email a:hover{color:#e9c9ac}
+.contact-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center}
+.contact-mail-btn{background:transparent!important;border:1px solid #dfcbb5;color:#dfcbb5;padding:17px 34px;font-size:10px;letter-spacing:.15em;font-weight:800;text-transform:uppercase;text-decoration:none;display:inline-block}
+.contact-mail-btn:hover{background:#dfcbb5!important;color:#1d1514}
+.drawer-bottom{flex-wrap:wrap}
+.drawer-bottom .outline-btn{text-decoration:none;display:inline-flex;align-items:center}
+@media(max-width:700px){.contact-actions{flex-direction:column}.contact-actions button,.contact-mail-btn{width:100%;max-width:320px;text-align:center}}

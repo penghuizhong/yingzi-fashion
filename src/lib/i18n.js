@@ -1,4 +1,8 @@
 export const SITE = 'https://oihey.cn';
+export const CONTACT_EMAIL = 'info@oihey.cn';
+export const CONTACT_WHATSAPP = '8618679708831';
+export const CONTACT_PHONE_DISPLAY = '+86 186 7970 8831';
+export const CONTACT_PHONE_TEL = '+8618679708831';
 
 const messages = {
   en: {
@@ -12,12 +16,12 @@ const messages = {
     craftOver:'02 / Behind the seams',craftTitle1:'Made with purpose.',craftTitle2:'Built on craft.',craftLead:'OIHEY connects the art of traditional pattern making with a responsive production approach. We support custom measurements, sampling, fabric selection, and small-to-medium brand programs from Guangzhou.',craftQuote:'“Great tailoring begins long before the first stitch.”',craftCTA:'Explore our approach',
     processOver:'03 / Our approach',processTitle1:'From your idea',processTitle2:'to a finished piece.',processLead:'A straightforward process built around fit, communication, and craftsmanship. Every project is scoped based on its unique requirements.',
     step1:'Share your vision',step1Desc:'Tell us your style, reference images, target quantity, and intended customer.',step2:'Choose your details',step2Desc:'Discuss silhouette, fabric, measurements, construction, and finishing.',step3:'Sample & refine',step3Desc:'Review the sample, evaluate fit, and confirm corrections where needed.',step4:'Produce & deliver',step4Desc:'Move into the agreed production and final quality-control process.',
-    contactOver:'Start something exceptional',contactTitle:"Let's make your next piece.",contactLead:"From a single tailored garment to a complete capsule collection, tell us what you have in mind. We'll help define the next steps.",contactCTA:'Prepare an inquiry',
+    contactOver:'Start something exceptional',contactTitle:"Let's make your next piece.",contactLead:"From a single tailored garment to a complete capsule collection, tell us what you have in mind. We'll help define the next steps.",contactCTA:'Prepare an inquiry',contactEmailLabel:'Email',contactEmailCTA:'Email us',contactWhatsLabel:'WhatsApp',contactWhatsCTA:'Chat on WhatsApp',
     footerIntro:'Thoughtful tailoring for brands, boutiques, and individuals. Guangzhou, China.',footerExplore:'Explore',footerAbout:'About OIHEY',footerProcess:'Our Process',footerServices:'Services',footerMTM:'Made-to-Measure',footerSampling:'Sampling & Production',footerRequest:'Request a quotation',footerCity:'Guangzhou, China',footerCopyright:'© 2026 OIHEY. All rights reserved.',footerDemo:'Style photography is illustrative and does not represent confirmed inventory.',
     quick:'Quick view',custom:'Custom-made · Fabric options',price:'Estimated from',priceDetail:'Estimated price',priceUnit:'/ piece',priceNote:'Indicative starting price only. Final pricing depends on fabric, construction, quantity, shipping and taxes. Request a confirmed quotation.',
     home:'Home',color:'Color reference',direction:'Style direction',fabric:'Fabric',fabricValue:'Options on request',customize:'Customization',quantity:'Quantity',quantityValue:'Quoted per project',service:'Service',
     discuss:'Discuss this style',detailsNote:'Photographs are style references only. Final fabric, silhouette, price and availability require confirmation.',detailMade:'Explore a made-to-order variation tailored to your brand or personal fit requirements.',
-    modalFabric:'Made to order · Options available',copy:'Copy inquiry',close:'Close',modalNote:'Demo only: no data is transmitted. Copy the inquiry and send it through your preferred channel.', copied:'Inquiry copied.',selectCopy:'Select the inquiry text to copy it.',
+    modalFabric:'Made to order · Options available',copy:'Copy inquiry',emailInquiry:'Send by email',whatsInquiry:'Send via WhatsApp',close:'Close',modalNote:'Copy the inquiry, or send it by email to info@oihey.cn or via WhatsApp.', copied:'Inquiry copied.',selectCopy:'Select the inquiry text to copy it.',
     homeTitle:'OIHEY | Custom Tailoring, Suits & Clothing Production in Guangzhou',homeDescription:'OIHEY Guangzhou tailoring atelier: made-to-measure clothing, custom suits, sample development and OEM/ODM production. Explore styles and request a quote.',
     productTitle:(p)=>`${p.name} | Custom ${p.category} | OIHEY`,productDescription:(p)=>`${p.name} (${p.id}): ${p.description} Custom-made style with fabric and sizing options. Ask OIHEY for a confirmed quote.`
   },
@@ -29,12 +33,12 @@ const messages = {
     tabAll:'全部款式',tabBusiness:'商务西装',tabBlazers:'西装外套',tabFormal:'正式礼服',search:'搜索款式、颜色或编号…',sort:'排序：',sortFeature:'精选推荐',sortName:'名称排序',sortNew:'最新优先',styles:' 款式',noResults:'没有匹配的款式，请更换关键词或分类。',clearSearch:'清空搜索',ownDesign:'咨询专属定制',
     craftOver:'02 / 工艺背后',craftTitle1:'用心制作。',craftTitle2:'匠心传承。',craftLead:'OIHEY 将传统制版工艺与灵活的生产方式结合，在广州提供量身定制、样衣开发、面料选择及中小批量品牌生产服务。',craftQuote:'“好的剪裁，始于落下第一针之前。”',craftCTA:'了解我们的工艺',
     processOver:'03 / 定制方式',processTitle1:'从您的灵感',processTitle2:'到最终成衣。',processLead:'以合身、沟通与工艺为核心的清晰流程。我们根据每个项目的实际需求制定方案。',step1:'沟通需求',step1Desc:'分享款式、参考图片、目标数量与客户定位。',step2:'确定细节',step2Desc:'确认廓形、面料、尺寸、内部结构与工艺细节。',step3:'打样与调整',step3Desc:'审核样衣与试穿效果，确认必要的修改。',step4:'生产与交付',step4Desc:'按确认方案进入生产，并完成最终品质检验。',
-    contactOver:'开启非凡定制',contactTitle:'让下一件作品，由此诞生。',contactLead:'无论是一件量身定制服装，还是完整的品牌系列，都欢迎告诉我们您的想法。',contactCTA:'准备询价',
+    contactOver:'开启非凡定制',contactTitle:'让下一件作品，由此诞生。',contactLead:'无论是一件量身定制服装，还是完整的品牌系列，都欢迎告诉我们您的想法。',contactCTA:'准备询价',contactEmailLabel:'邮箱',contactEmailCTA:'发邮件联系',contactWhatsLabel:'WhatsApp / 电话',contactWhatsCTA:'WhatsApp 联系',
     footerIntro:'为品牌、精品店与个人客户提供精致定制服务。中国广州。',footerExplore:'探索',footerAbout:'关于 OIHEY',footerProcess:'定制流程',footerServices:'服务',footerMTM:'量身定制',footerSampling:'打样与生产',footerRequest:'获取报价',footerCity:'中国广州',footerCopyright:'© 2026 OIHEY. 保留所有权利。',footerDemo:'款式图片仅供视觉参考，不代表已确认的现货商品。',
     quick:'快速查看',custom:'支持定制 · 可选面料',price:'预估报价',priceDetail:'预估报价',priceUnit:'/ 件',priceNote:'仅供预算参考。实际价格随面料、工艺、数量、运输及税费而变化，最终以正式报价为准。',
     home:'首页',color:'参考颜色',direction:'款式风格',fabric:'面料',fabricValue:'可按需求选择',customize:'定制服务',quantity:'数量',quantityValue:'按项目报价',service:'服务',
     discuss:'咨询此款',detailsNote:'图片仅供款式参考；面料、版型、价格及供应情况以确认结果为准。',detailMade:'可按您的品牌要求或个人尺寸调整版型、面料和工艺。',
-    modalFabric:'按需定制 · 多种面料可选',copy:'复制询价',close:'关闭',modalNote:'这是演示版本，不会发送信息。可复制询价内容并通过现有渠道发送。',copied:'询价内容已复制。',selectCopy:'请选择并复制询价内容。',
+    modalFabric:'按需定制 · 多种面料可选',copy:'复制询价',emailInquiry:'用邮箱发送',whatsInquiry:'用 WhatsApp 发送',close:'关闭',modalNote:'可复制询价内容，或发邮件到 info@oihey.cn / 用 WhatsApp 发送。',copied:'询价内容已复制。',selectCopy:'请选择并复制询价内容。',
     homeTitle:'OIHEY 樱紫时尚｜广州高级定制西装与服装 OEM/ODM',homeDescription:'OIHEY 樱紫时尚广州服装定制工坊，提供男士西装、量身定制、样衣开发及品牌 OEM/ODM 生产服务。查看款式并咨询报价。',
     productTitle:(p)=>`${p.nameZh}（${p.id}）｜${p.categoryZh}定制｜OIHEY`,productDescription:(p)=>`${p.nameZh}（${p.id}）：${p.descriptionZh} 支持面料与尺寸定制，实际价格请咨询 OIHEY。`
   }

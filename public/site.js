@@ -45,6 +45,10 @@ function openProduct(id){
  qs('#quoteText').textContent=locale==='zh'
   ? `OIHEY 你好，\n我对 ${product.id} — ${product.nameZh} 感兴趣。\n网站展示参考起价：USD ${product.estimatedFromUsd}（非最终报价）。\n请告知可选面料、定制工艺、起订量、打样费及交期，并提供正式报价。谢谢！`
   : `Hello OIHEY team,\nI am interested in ${product.id} — ${product.name}.\nWebsite reference estimate: from USD ${product.estimatedFromUsd} (not a final quote).\nPlease advise on fabrics, custom construction, MOQ, sample cost, lead time and a confirmed quotation. Thank you.`;
+ const quoteBody=qs('#quoteText').textContent;
+ const quoteSubject=locale==='zh'?`询价 ${product.id} — ${product.nameZh}`:`Inquiry ${product.id} — ${product.name}`;
+ const emailBtn=qs('#emailQuote');if(emailBtn)emailBtn.href=`mailto:info@oihey.cn?subject=${encodeURIComponent(quoteSubject)}&body=${encodeURIComponent(quoteBody)}`;
+ const whatsBtn=qs('#whatsQuote');if(whatsBtn)whatsBtn.href=`https://wa.me/8618679708831?text=${encodeURIComponent(quoteBody)}`;
  overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');doc.body.classList.add('lock');qs('#closeDrawer')?.focus();
 }
 function closeDrawer(){if(!overlay)return;overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');doc.body.classList.remove('lock')}

@@ -2,7 +2,7 @@
 import products from '../data/products.json';
 import ProductCard from './ProductCard.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { getText } from '../lib/i18n.js';
+import { getText, CONTACT_EMAIL, CONTACT_WHATSAPP, CONTACT_PHONE_DISPLAY } from '../lib/i18n.js';
 const { locale='en' } = Astro.props;
 const t=getText(locale);
 ---
@@ -36,7 +36,7 @@ const t=getText(locale);
 </section>
 <section class="story" id="story"><div class="story-image"><img loading="lazy" src="https://images.pexels.com/photos/6766284/pexels-photo-6766284.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1200&fit=crop" alt={locale==='zh'?'人台西装工艺与剪裁参考图':'Tailoring studio mannequin and pattern-making reference'} /></div><div class="story-content"><span class="overline">{t.craftOver}</span><h2>{t.craftTitle1}<br/>{t.craftTitle2}</h2><p>{t.craftLead}</p><div class="story-quote">{t.craftQuote}</div><a href="#process" class="btn-link story-cta">{t.craftCTA} ↗</a></div></section>
 <section class="section container process" id="process"><span class="overline">{t.processOver}</span><h2>{t.processTitle1}<br/>{t.processTitle2}</h2><p class="lead">{t.processLead}</p><div class="steps"><div class="step"><span class="step-num">01</span><h3>{t.step1}</h3><p>{t.step1Desc}</p></div><div class="step"><span class="step-num">02</span><h3>{t.step2}</h3><p>{t.step2Desc}</p></div><div class="step"><span class="step-num">03</span><h3>{t.step3}</h3><p>{t.step3Desc}</p></div><div class="step"><span class="step-num">04</span><h3>{t.step4}</h3><p>{t.step4Desc}</p></div></div></section>
-<section class="contact" id="contact"><span class="overline">{t.contactOver}</span><h2>{t.contactTitle}</h2><p>{t.contactLead}</p><button type="button" data-quote>{t.contactCTA} &nbsp; ↗</button></section>
+<section class="contact" id="contact"><span class="overline">{t.contactOver}</span><h2>{t.contactTitle}</h2><p>{t.contactLead}</p><p class="contact-email"><span>{t.contactEmailLabel}</span><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p><p class="contact-email"><span>{t.contactWhatsLabel}</span><a href={`https://wa.me/${CONTACT_WHATSAPP}`} target="_blank" rel="noopener">{CONTACT_PHONE_DISPLAY}</a></p><div class="contact-actions"><button type="button" data-quote>{t.contactCTA} &nbsp; ↗</button><a class="contact-mail-btn" href={`mailto:${CONTACT_EMAIL}`}>{t.contactEmailCTA} &nbsp; ↗</a><a class="contact-mail-btn" href={`https://wa.me/${CONTACT_WHATSAPP}?text=${encodeURIComponent(locale==='zh'?'你好 OIHEY，我想咨询定制。':'Hello OIHEY, I would like to enquire about custom tailoring.')}`} target="_blank" rel="noopener">{t.contactWhatsCTA} &nbsp; ↗</a></div></section>
 </main>
 <script type="application/json" id="product-data" set:html={JSON.stringify(products).replaceAll('<','\\u003c')} />
 <div class="overlay" id="productOverlay" aria-hidden="true"><aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
@@ -45,7 +45,7 @@ const t=getText(locale);
   <div class="drawer-photo"><img id="drawerPhoto" alt="" /></div>
   <div class="detail-list"><div><span>{t.color}</span><strong id="drawerColor"></strong></div><div><span>{t.direction}</span><strong id="drawerType"></strong></div><div><span>{t.fabric}</span><strong>{t.modalFabric}</strong></div><div><span>{t.service}</span><strong>MTM / OEM / ODM</strong></div><div><span>{t.priceDetail}</span><strong id="drawerPrice"></strong></div></div>
   <p class="price-disclaimer">{t.priceNote}</p><div class="quote-text" id="quoteText"></div>
-  <div class="drawer-bottom"><button type="button" id="copyQuote" class="btn-dark">{t.copy} <span>↗</span></button><button type="button" class="outline-btn" id="drawerCloseSecondary">{t.close}</button></div>
+  <div class="drawer-bottom"><button type="button" id="copyQuote" class="btn-dark">{t.copy} <span>↗</span></button><a id="emailQuote" class="outline-btn" href={`mailto:${CONTACT_EMAIL}`}>{t.emailInquiry} <span>↗</span></a><a id="whatsQuote" class="outline-btn" href={`https://wa.me/${CONTACT_WHATSAPP}`} target="_blank" rel="noopener">{t.whatsInquiry} <span>↗</span></a><button type="button" class="outline-btn" id="drawerCloseSecondary">{t.close}</button></div>
   <p class="demo-note">{t.modalNote}</p>
 </aside></div>
 <div class="toast" role="status" id="toast"></div>
