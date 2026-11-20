@@ -245,3 +245,22 @@ html.vanim .vstep.on{opacity:1;transform:none}
  html.vanim .vstep{opacity:1;transform:none;transition:none}
  .vstep-detail,.vstep-detail>p,.vstep-icon{transition:none}
 }
+
+/* Why OIHEY: advantages + comparison (2026-11-20) */
+.advs{margin-top:32px}
+.adv{display:grid;grid-template-columns:42px 1fr;gap:15px;padding:15px 0;border-top:1px solid rgba(214,186,154,.14)}
+.adv-num{font-family:'Playfair Display',Georgia,serif;font-size:19px;line-height:1.3;color:#d6ba9a}
+.adv h3{font-size:14.5px;margin:0 0 5px;color:#ede2d8;font-weight:700}
+.adv p{font-size:12px;line-height:1.9;color:#a3a094;margin:0}
+.cmp{margin-top:28px;border:1px solid rgba(214,186,154,.18)}
+.cmp-row{display:grid;grid-template-columns:1.05fr 1.1fr 1fr 1fr;border-top:1px solid rgba(214,186,154,.12)}
+.cmp-row:first-child{border-top:0}
+.cmp-head{background:rgba(214,186,154,.07)}
+.cmp-row>span{padding:10px 12px;font-size:11.5px;line-height:1.65;color:#a3a094}
+.cmp-row>span:first-child{color:#8f8a7c}
+.cmp-head>span{color:#ede2d8;font-weight:700}
+.cmp-row .cmp-us{color:#e8cf9f;font-weight:700}
+@media(max-width:760px){
+ .adv{grid-template-columns:34px 1fr;gap:12px}
+ .cmp-row>span{padding:8px 9px;font-size:10.5px}
+}
