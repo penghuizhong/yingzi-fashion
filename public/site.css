@@ -210,3 +210,38 @@ body { background:var(--paper);color:var(--ink); }
 /* Footer contact info (2026-11-20) */
 .footer-addr{line-height:1.75;max-width:290px}
 .footer-info{display:block;color:#9e8e84;font-size:11px;margin-bottom:13px}
+
+/* Vertical bespoke process timeline (2026-11-20) */
+.vsteps{position:relative;max-width:920px;margin-top:54px}
+.vsteps-line{position:absolute;top:10px;bottom:10px;left:187px;width:2px;background:rgba(214,186,154,.15)}
+.vsteps-fill{display:block;width:100%;height:100%;background:#d6ba9a;transform:scaleY(0);transform-origin:top center}
+.vstep{display:grid;grid-template-columns:150px 24px 1fr;column-gap:26px;padding:30px 0;position:relative}
+.vstep-side{display:flex;flex-direction:column;gap:7px;padding-top:1px}
+.vstep-num{font-family:'Playfair Display',Georgia,serif;font-size:30px;line-height:1;color:#7d7668;transition:color .5s}
+.vstep.on .vstep-num{color:#d6ba9a}
+.vstep-time{font-size:10px;letter-spacing:.18em;color:#8f8a7c;text-transform:uppercase}
+.vstep-node{width:13px;height:13px;border-radius:50%;border:1px solid rgba(214,186,154,.55);background:#100e0f;justify-self:center;margin-top:7px;transition:background .4s,box-shadow .4s}
+.vstep.on .vstep-node{background:#d6ba9a;box-shadow:0 0 0 5px rgba(214,186,154,.14)}
+.vstep-body h3{font-size:17px;margin:0 0 10px;color:#ede2d8;font-weight:700}
+.vstep-body>p{font-size:12.5px;line-height:2;color:#a3a094;margin:0;max-width:560px}
+.vstep-detail{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.vstep-detail>p{overflow:hidden;min-height:0;margin:0;color:#a79b88;font-size:12px;line-height:1.95;max-width:560px;transition:padding .45s ease}
+.vstep.open .vstep-detail{grid-template-rows:1fr}
+.vstep.open .vstep-detail>p{padding-top:10px}
+.vstep-toggle{margin-top:12px;display:inline-flex;gap:7px;align-items:center;background:none;border:0;padding:0;color:#d6ba9a;font:inherit;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.vstep-icon{display:inline-block;transition:transform .3s;font-size:13px;line-height:1}
+.vstep.open .vstep-icon{transform:rotate(45deg)}
+.process-cta{margin-top:42px}
+.process-cta a{color:#d6ba9a;font-size:13px;letter-spacing:.05em;text-decoration:none;border-bottom:1px solid rgba(214,186,154,.35);padding-bottom:4px}
+html.vanim .vstep{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+html.vanim .vstep.on{opacity:1;transform:none}
+@media(max-width:760px){
+ .vsteps-line{left:113px}
+ .vstep{grid-template-columns:86px 24px 1fr;column-gap:16px;padding:24px 0}
+ .vstep-num{font-size:23px}
+ .vstep-body h3{font-size:15.5px}
+}
+@media(prefers-reduced-motion:reduce){
+ html.vanim .vstep{opacity:1;transform:none;transition:none}
+ .vstep-detail,.vstep-detail>p,.vstep-icon{transition:none}
+}

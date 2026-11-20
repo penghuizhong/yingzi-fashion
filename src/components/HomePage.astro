@@ -5,6 +5,13 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import { getText, CONTACT_EMAIL, CONTACT_WHATSAPP, CONTACT_PHONE_DISPLAY } from '../lib/i18n.js';
 const { locale='en' } = Astro.props;
 const t=getText(locale);
+const processSteps=[
+ {n:'01',title:t.step1,time:t.step1Time,desc:t.step1Desc,detail:t.step1Detail},
+ {n:'02',title:t.step2,time:t.step2Time,desc:t.step2Desc,detail:t.step2Detail},
+ {n:'03',title:t.step3,time:t.step3Time,desc:t.step3Desc,detail:t.step3Detail},
+ {n:'04',title:t.step4,time:t.step4Time,desc:t.step4Desc,detail:t.step4Detail},
+ {n:'05',title:t.step5,time:t.step5Time,desc:t.step5Desc,detail:t.step5Detail},
+];
 ---
 <SiteLayout locale={locale} isHome={true} title={t.homeTitle} description={t.homeDescription}>
 <main>
@@ -35,7 +42,7 @@ const t=getText(locale);
   <div class="collection-bottom"><a class="outline-btn" href="#contact">{t.ownDesign} &nbsp; ↗</a></div>
 </section>
 <section class="story" id="story"><div class="story-image"><img loading="lazy" src="https://images.pexels.com/photos/6766284/pexels-photo-6766284.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1200&fit=crop" alt={locale==='zh'?'人台西装工艺与剪裁参考图':'Tailoring studio mannequin and pattern-making reference'} /></div><div class="story-content"><span class="overline">{t.craftOver}</span><h2>{t.craftTitle1}<br/>{t.craftTitle2}</h2><p>{t.craftLead}</p><div class="story-quote">{t.craftQuote}</div><a href="#process" class="btn-link story-cta">{t.craftCTA} ↗</a></div></section>
-<section class="section container process" id="process"><span class="overline">{t.processOver}</span><h2>{t.processTitle1}<br/>{t.processTitle2}</h2><p class="lead">{t.processLead}</p><div class="steps"><div class="step"><span class="step-num">01</span><h3>{t.step1}</h3><p>{t.step1Desc}</p></div><div class="step"><span class="step-num">02</span><h3>{t.step2}</h3><p>{t.step2Desc}</p></div><div class="step"><span class="step-num">03</span><h3>{t.step3}</h3><p>{t.step3Desc}</p></div><div class="step"><span class="step-num">04</span><h3>{t.step4}</h3><p>{t.step4Desc}</p></div></div></section>
+<section class="section container process" id="process"><span class="overline">{t.processOver}</span><h2>{t.processTitle1}<br/>{t.processTitle2}</h2><p class="lead">{t.processLead}</p><div class="vsteps" data-vsteps><span class="vsteps-line" aria-hidden="true"><span class="vsteps-fill"></span></span>{processSteps.map(s=>(<article class="vstep" data-vstep><div class="vstep-side"><span class="vstep-num">{s.n}</span><span class="vstep-time">{s.time}</span></div><span class="vstep-node" aria-hidden="true"></span><div class="vstep-body"><h3>{s.title}</h3><p>{s.desc}</p><div class="vstep-detail"><p>{s.detail}</p></div><button class="vstep-toggle" type="button" aria-expanded="false">{t.stepMore}<span class="vstep-icon" aria-hidden="true">+</span></button></div></article>))}</div><p class="process-cta"><a href="#contact">{t.processCta} <span aria-hidden="true">→</span></a></p></section>
 <section class="contact" id="contact"><span class="overline">{t.contactOver}</span><h2>{t.contactTitle}</h2><p>{t.contactLead}</p><div class="contact-actions"><button type="button" data-quote>{t.contactCTA} &nbsp; ↗</button><a class="contact-btn plain-case" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL} &nbsp; ↗</a><a class="contact-btn plain-case" href={`https://wa.me/${CONTACT_WHATSAPP}?text=${encodeURIComponent(locale==='zh'?'你好 OIHEY，我想咨询定制。':'Hello OIHEY, I would like to enquire about custom tailoring.')}`} target="_blank" rel="noopener">WhatsApp {CONTACT_PHONE_DISPLAY} &nbsp; ↗</a></div></section>
 </main>
 <script type="application/json" id="product-data" set:html={JSON.stringify(products).replaceAll('<','\\u003c')} />
