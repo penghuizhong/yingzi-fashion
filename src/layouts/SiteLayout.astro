@@ -1,12 +1,12 @@
 ---
-import { getText, localUrl, absoluteUrl, CONTACT_EMAIL, CONTACT_WHATSAPP, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL } from '../lib/i18n.js';
+import { getText, localUrl, absoluteUrl, CONTACT_EMAIL, CONTACT_WHATSAPP, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL, ADDRESS_ZH, ADDRESS_EN, OPENING_HOURS, MAPS_URL } from '../lib/i18n.js';
 const { locale='en', path='', title, description, image='/images/oihey-hero-campaign.webp', isHome=false, includeApp=true } = Astro.props;
 const t=getText(locale);
 const canonical=absoluteUrl(localUrl(locale,path));
 const altEn=absoluteUrl(localUrl('en',path));
 const altZh=absoluteUrl(localUrl('zh',path));
 const jsonld = isHome ? [
-  { '@context':'https://schema.org','@type':'Organization', name:'OIHEY', url:'https://oihey.cn/', email:CONTACT_EMAIL, telephone:CONTACT_PHONE_TEL, description:'Guangzhou custom tailoring, made-to-measure and OEM/ODM clothing production', address:{'@type':'PostalAddress',addressLocality:'Guangzhou',addressCountry:'CN'}, contactPoint:{'@type':'ContactPoint', email:CONTACT_EMAIL, telephone:CONTACT_PHONE_TEL, contactType:'sales', areaServed:'Worldwide', availableLanguage:['en','zh-CN']} },
+  { '@context':'https://schema.org','@type':'Organization', name:'OIHEY', url:'https://oihey.cn/', email:CONTACT_EMAIL, telephone:CONTACT_PHONE_TEL, description:'Guangzhou custom tailoring, made-to-measure and OEM/ODM clothing production', address:{'@type':'PostalAddress',streetAddress:'Room 202, 2F, No. 66 Chisha Huan Village Road, Guanzhou Subdistrict',addressLocality:'Guangzhou',addressRegion:'Guangdong',addressCountry:'CN'}, contactPoint:{'@type':'ContactPoint', email:CONTACT_EMAIL, telephone:CONTACT_PHONE_TEL, contactType:'sales', areaServed:'Worldwide', availableLanguage:['en','zh-CN']} },
   { '@context':'https://schema.org','@type':'WebSite', name:'OIHEY', url:'https://oihey.cn/', inLanguage:['en','zh-CN'] }
 ] : { '@context':'https://schema.org','@type':'WebPage', name:title, url:canonical, description, inLanguage:locale==='zh'?'zh-CN':'en' };
 ---
@@ -39,7 +39,7 @@ const jsonld = isHome ? [
   <meta name="twitter:card" content="summary_large_image" />
   {isHome && <link rel="preload" as="image" href="/images/oihey-hero-campaign.webp" type="image/webp" />}
   <link rel="preconnect" href="https://images.pexels.com" />
-  <link rel="stylesheet" href="/site.css?v=2" />
+  <link rel="stylesheet" href="/site.css?v=3" />
   <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />
 </head>
 <body data-locale={locale}>
@@ -64,7 +64,7 @@ const jsonld = isHome ? [
     <div><div class="footer-brand">OIHEY</div><p>{t.footerIntro}</p></div>
     <div><h4>{t.footerExplore}</h4><a href={`${localUrl(locale)}#collections`}>{t.navCollections}</a><a href={`${localUrl(locale)}#story`}>{t.footerAbout}</a><a href={`${localUrl(locale)}#process`}>{t.footerProcess}</a></div>
     <div><h4>{t.footerServices}</h4><a href={`${localUrl(locale)}#contact`}>{t.footerMTM}</a><a href={`${localUrl(locale)}#contact`}>OEM / ODM</a><a href={`${localUrl(locale)}#contact`}>{t.footerSampling}</a></div>
-    <div><h4>{t.navContact}</h4><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a><a href={`https://wa.me/${CONTACT_WHATSAPP}`} target="_blank" rel="noopener">WhatsApp {CONTACT_PHONE_DISPLAY}</a><a href={`${localUrl(locale)}#contact`}>{t.footerRequest}</a><a href={`${localUrl(locale)}#contact`}>{t.footerCity}</a><a href="https://oihey.cn" rel="noopener">oihey.cn</a></div>
+    <div><h4>{t.navContact}</h4><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>{locale==='zh' ? <a href={`tel:${CONTACT_PHONE_TEL}`}>{CONTACT_PHONE_DISPLAY}</a> : <a href={`https://wa.me/${CONTACT_WHATSAPP}`} target="_blank" rel="noopener">{CONTACT_PHONE_DISPLAY}</a>}<a class="footer-addr" href={MAPS_URL[locale==='zh'?'zh':'en']} target="_blank" rel="noopener">{locale==='zh'?ADDRESS_ZH:ADDRESS_EN}</a><span class="footer-info">{t.footerHours} {OPENING_HOURS}</span></div>
   </div>
   <div class="footer-bottom"><span>{t.footerCopyright}</span><span>{t.footerDemo}</span></div>
 </footer>

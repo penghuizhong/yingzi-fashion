@@ -206,3 +206,7 @@ body { background:var(--paper);color:var(--ink); }
 .drawer-bottom{flex-wrap:wrap}
 .drawer-bottom .outline-btn{text-decoration:none;display:inline-flex;align-items:center}
 @media(max-width:700px){.contact-actions{flex-direction:column;align-items:center}.contact-actions button,.contact-btn{width:100%;max-width:340px;text-align:center}}
+
+/* Footer contact info (2026-11-20) */
+.footer-addr{line-height:1.75;max-width:290px}
+.footer-info{display:block;color:#9e8e84;font-size:11px;margin-bottom:13px}
